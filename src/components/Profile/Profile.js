@@ -5,7 +5,11 @@ debugger;
     return (
         <div>
             <ProfileInfo />
-            <MyPosts posts ={props.state}/>
+            <MyPosts posts ={props.state}
+                     newPostText={props.state.newPostText}
+                     updateNewPostText={props.updateNewPostText}
+                     addPost={props.addPost}
+                    />
         </div>
     )
 };

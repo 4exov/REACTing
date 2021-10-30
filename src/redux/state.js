@@ -1,3 +1,4 @@
+import {rerenderEntireTree} from "../render";
 
 
 let state = {
@@ -10,6 +11,7 @@ let state = {
             {id: 5, message: "Felix Hi"},
             {id: 6, message: "Six Hi"},
         ],
+        newPostText: "it-project"
 
 
     },
@@ -33,5 +35,20 @@ let state = {
     }
 
 }
+export let addPost = () => {
+    let newPost = {
+        id:5,
+        message: state.profilePage.newPostText
 
+    };
+    state.profilePage.postData.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+
+    state.profilePage.newPostText= newText;
+    rerenderEntireTree(state);
+}
 export default state;
