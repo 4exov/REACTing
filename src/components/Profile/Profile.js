@@ -7,8 +7,7 @@ debugger;
             <ProfileInfo />
             <MyPosts posts ={props.state}
                      newPostText={props.state.newPostText}
-                     updateNewPostText={props.updateNewPostText}
-                     addPost={props.addPost}
+                     dispatch={props.dispatch}
                     />
         </div>
     )
