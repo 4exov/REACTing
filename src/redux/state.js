@@ -1,3 +1,9 @@
+
+import sidebarReducer from "./sidebar_reducer";
+import dialogsReducer from "./dialogs_reducer";
+import profileReducer from "./profile_reducer";
+
+
 let store = {
     _state: {
 
@@ -23,6 +29,7 @@ let store = {
                 {id: 5, message: "Felix Hi"},
                 {id: 6, message: "Six Hi"},
             ],
+            newMessageBody: "",
             dialogsData: [
                 {id: 1, name: "One"},
                 {id: 2, name: "Two"},
@@ -31,7 +38,8 @@ let store = {
                 {id: 5, name: "Five"},
                 {id: 6, name: "Six"},
             ]
-        }
+        },
+        sidebar:{}
 
 
     },
@@ -42,7 +50,7 @@ let store = {
         return this._state;
     },
     addPost() {
-        debugger;
+
 
 
 
@@ -57,22 +65,12 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST'){
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-            };
-            this._state.profilePage.postData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        }
-    }
-}
-
+        this._callSubscriber(this._state)
+    }}
 
 
 
