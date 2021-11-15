@@ -1,4 +1,3 @@
-import classes from "./ProfileInfo.module.css"
 import s from "./ProfileInfo.module.css"
 const ProfileInfo = () => {
     return (
